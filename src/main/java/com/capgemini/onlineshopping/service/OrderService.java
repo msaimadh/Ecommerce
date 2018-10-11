@@ -1,5 +1,6 @@
 package com.capgemini.onlineshopping.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.capgemini.onlineshopping.entity.LineItem;
@@ -17,10 +18,12 @@ public interface OrderService {
 	public Set<Order> getOrders(int customerId) throws OrderNotFoundException;
 
 	public Order getOrder(int orderId) throws OrderNotFoundException;
+	
+	/*public List<Order> getAllOrders();*/
 
 	public Order submitOrder(Order order);
 
-	public void cancelOrder(int orderId) throws OrderNotFoundException;
+	public Order cancelOrder(int orderId) throws OrderNotFoundException;
 
-	public void deleteOrder(Order order) throws OrderNotFoundException;
+	public void deleteOrder(int orderId) throws OrderNotFoundException;
 }

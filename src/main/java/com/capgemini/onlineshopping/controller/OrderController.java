@@ -1,5 +1,6 @@
 package com.capgemini.onlineshopping.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.onlineshopping.entity.LineItem;
@@ -44,5 +46,25 @@ public class OrderController {
 		return new ResponseEntity<Order>(orderService.submitOrder(order), HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/shopping/cancel")
+	public ResponseEntity<Order> cancelOrder(@RequestParam int orderId) {
+		ResponseEntity<Order> responseEntity = new ResponseEntity<Order>(orderService.cancelOrder(orderId),HttpStatus.OK);
+		return responseEntity;
+	}
+	
+
+	
+	@DeleteMapping("/shopping/delete")
+	public ResponseEntity<Order> deleteOrder(@RequestParam int orderId){
+		orderService.deleteOrder( orderId);
+		return new ResponseEntity<Order>(HttpStatus.OK);
+	}
+	
+	/*@GetMapping("/shopping")
+	public ResponseEntity<List<Order>> getAllOrders(){
+		return new ResponseEntity<List<Order>>(orderService.getAllOrders(),HttpStatus.OK);
+	}*/
+	
 
 }
